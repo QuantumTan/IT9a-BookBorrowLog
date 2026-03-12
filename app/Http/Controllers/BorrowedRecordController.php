@@ -30,10 +30,12 @@ class BorrowedRecordController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(CreateBorrowedRecordRequest $request)
-    {
-        BorrowedRecord::create($request->all());
-        return redirect() -> route('welcome');
-    }
+ {
+    $validated = $request->validated(); // uses rules() from FormRequest
+    BorrowedRecord::create($validated);
+
+    return redirect()->route('welcome');
+}
 
 
     /**
@@ -55,7 +57,7 @@ class BorrowedRecordController extends Controller
     {
         //
         $borrowed = BorrowedRecord::findOrFail($id);
-        $borrowed->update($request->all());
+        $borrowed->update($request->validated());
 
         $borrowed->save();
         return redirect()->route('welcome');

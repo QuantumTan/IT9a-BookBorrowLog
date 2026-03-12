@@ -29,7 +29,9 @@
         <h2 class="fs-2 fw-semibold p-0 m-0 col-1">Logs</h2>
         <a href="{{ route('create') }}" class="btn btn-primary col-2"><i class="bi bi-plus"></i>Add Log</a>
     </div>
-
+        @if ($borrowed_records->isEmpty())
+            <p class="text-center">No logs. Add one to get started</p>
+        @endif
     <div class="row justify-content-center m-5">
         @foreach ($borrowed_records as $record)
         <div class="card m-3 p-3 row">
